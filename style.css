@@ -1,32 +1,24 @@
-header{
-  background: #F9A03F;
-  height: 75px;
-  font-size: 30px;
-  width: 100%;
-  position: fixed;
-}
 
-body {
-    background: url("bigstock-Halloween.jpg");
-    background-size: 100%100%;
-    background-color: #cccccc;
-}
 
-.ui.container{
-  display: block;
 
-}
+
 p{
   float: center;
   font-size: 24px; 
 }
 
-footer {
+
+footer.ui.segment.inverted {
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background: lightblue;
-  text-align: center;
+  
+}
+
+.img_small
+ { width:250px;
+  height:170px;
+  margin: 20px; 
 }
