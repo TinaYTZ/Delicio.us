@@ -1,7 +1,75 @@
-/* jslint maxlen: 500 */
-/* jshint browser: true, jquery: true, camelcase: true, indent: 2, undef: true, quotmark: single, trailing: true, curly: true, eqeqeq: true, forin: true, immed: true, latedef: true, newcap: true, nonew: true, unused: true, strict: true */
 var main = function () {
     'use strict';
+
+
+  var socket= io.connect();
+  
+  var $userFormArea=$("#userFormArea");
+  var $userForm=$("#userForm");
+  var $users=$('#users');
+  var $username=$('#username');
+  var $mainArea=$("#mainArea");
+
+  
+  socket.on('get users', function(data){
+    var html='';
+    for (var i = 0; i < data.length; i++) {
+    html+='<li class="list-group-item">'+ data[i] +'</li>'
+
+  }
+  $users.html(html);
+  }); 
+
+  $userForm.submit(function(e){
+      e.preventDefault();
+      socket.emit('new user', $username.val(),function(data){
+        if(data){
+          $userFormArea.hide();
+          $mainArea.show();
+
+        }
+      });
+      $username.val('');
+  });
+};
+
+
+$(document).ready(main);
+
+/*var main = function () {
+    'use strict';
+     var socket = io.connect();
+
+
+    var $mainArea=$("#mainArea");
+    var $userFormArea=$("#userFormArea");
+    var $userForm=$("#userForm");
+    var $username=$('#username');
+
+
+
+    
+    socket.on('get users', function(data){
+    var html='';
+    for (var i = 0; i < data.length; i++) {
+    html+='<li class="list-group-item">'+ data[i] +'</li>'
+    }
+    $users.html(html);
+    });
+
+    $userForm.submit(function(e){
+    e.preventDefault();
+    socket.emit('new user', $username.val(),function(data){
+    if(data){
+      $userFormArea.hide();
+      $mainArea.show();
+        }
+    });
+      $username.val('');
+});
+
+
+
  // Send POST request via ajax
     function handlePOST(url, obj, json) {
         $.ajax({
@@ -20,7 +88,10 @@ var main = function () {
         });
     }
 
- /*function handleGET(url) {
+ 
+
+ /*function 
+ handleGET(url) {
   $.ajax({
   	type:'GET',
   	url:url,
@@ -45,7 +116,7 @@ var main = function () {
 }
 
  
-*/
+/*
 function(){
     $.ajax({ url: '/'
          , type: 'GET'
@@ -56,4 +127,10 @@ function(){
 
 };
 
-$(document).ready(main);
+
+
+
+}
+
+
+$(document).ready(main);*/

@@ -1,90 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link href="./public/css/reset.css" rel="stylesheet" type="text/css">
-    <link href="./public/css/semantic/dist/semantic.min.css" rel="stylesheet" type="text/css">
-    <script src="./public/css/semantic/dist/semantic.min.js"></script>
-    <link href="./public/css/style.css" rel="stylesheet" type="text/css">
-	<title>All about food</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Delicio.us   All about food</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/public/css/4-col-portfolio.css" rel="stylesheet">
+    <link href="/public/css/style.css" rel="stylesheet" type="text/css">
+    
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+
 <body>
-    <header>
-        <div class="ui teal message">
-            <h1>All food pic. All the time</h1>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Delicio.us  </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <div class="ui inverted teal menu">
-            <a class="active item" href=#>Sign up!</a> 
-            <a class="item" href=#>FAQ</a> 
-            <a class="item" href="#">Support</a>
-            <form method="POST" enctype="multipart/form-data">
-                <input type="file" name="myimage" />
-                 <input type="submit" name="submit" value="submit" />
-            </form>
-            <div class="right menu">
-                <div class="item">
-                    <div class="ui action left icon input">
-                        <i class="search icon">&nbsp;</i> <input placeholder="Search"
-                        type="text"> <button class="ui button">Submit</button>
+        <!-- /.container -->
+    </nav>
+    <!-- User Form Content -->
+    <div id="userFormArea" class="row text-center">
+            <div class="col-lg-12">
+            <h2 class="ui teal image header">
+                <div class="content">
+                    Welcome to Delicio.us
+                </div>
+            </h2>
+            <form class="ui large form" id ='userForm'>
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" id='username' placeholder="username">
+                        </div>
                     </div>
-                </div><a class="item">Link</a>
+                    <p></p>
+                    <input type="submit" class="ui fluid large teal submit button" value="login" />
+                </div>
+                <div class="ui error message"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container" id='mainArea'>
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Share us you pic    
+                </h1>
+                <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                     <input class=" col-md-3" type="file" name="myimage" />
+                     <input class ="col-md-1"type="submit" name="submit" value="submit" />
+                </form>
+               </div>
             </div>
         </div>
-    </header>
-    <main>
-    <div class="ui container">
-        <p>main part</p>
-       <div class="ui   grid">
-        <div class="four wide column">
+        <!-- /.row -->
+<hr/>
+
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-        <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-                <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-                <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
+            </div>
         </div>
-                <div class="four wide column">
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-                <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-                <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
-        </div>
-                <div class="four wide column">
+            </div>
+            <div class="col-md-3 portfolio-item">
                 <a href="#">
-                    <img class="img_small" src="http://placehold.it/750x450" alt="">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
                 </a>
+            </div>
         </div>
-      </div>
-     
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-3 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-3 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; All food pictures, all the time Website 2016
+                    </p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
     </div>
-    </main>
-    <footer class="ui segment inverted">
-    	<p>Copyright &copy; All food pictures, all the time Website 2016</p>
-    </footer>
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js">
-    </script> 
-    <script src="/public/javascripts/app.js">
-    </script>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/public/javascripts/bootstrap.min.js"></script>
+
+    <!-- appjs -->
+    <script src="/public/javascripts/app.js"></script>
+
+
+
 </body>
+
 </html>
