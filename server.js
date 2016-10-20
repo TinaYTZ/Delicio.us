@@ -2,6 +2,18 @@ var express=require('express');
 var app = express();
 var server= require('http').createServer(app);
 var io=require('socket.io').listen(server);
+var multer= require('multer'),
+    storage=multer.diskStorage({
+        destination: function(req,file,cb){
+            cb(null, './public/images/');
+        },
+        filename:function (req,file,cb){
+            cb(null,Date.now()+file.originalname);
+        }             
+    });
+
+var upload=multer({storage:storage});
+
 users=[];
 connections=[];
 
@@ -41,6 +53,12 @@ io.sockets.on('connection', function(socket){
 
 
 });
+
+app.post('/',upload.any(),function(req,res,next){
+    console.log(req.files);
+    res.send(req.files);
+});
+
 
 
 /*
