@@ -65,16 +65,18 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
+
     </nav>
     <!-- User Form Content -->
-    <div id="userFormArea" class="row text-center">
+    <div class="container">
+        <div id="userFormArea" class="row text-center">
             <div class="col-lg-12">
             <h2 class="ui teal image header">
                 <div class="content">
                     Welcome to Delicio.us
                 </div>
             </h2>
-            <form class="ui large form" id ='userForm'>
+            <form  id ='userForm'>
                 <div class="ui stacked segment">
                     <div class="field">
                         <div class="ui left icon input">
@@ -88,26 +90,38 @@
                 <div class="ui error message"></div>
             </form>
         </div>
+      </div>
     </div>
 
     <!-- Page Content -->
     <div class="container" id='mainArea'>
-
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <!--<div class="col-lg-12">-->
                 <h1 class="page-header">Share us you pic    
                 </h1>
                 <div class="row">
-                <form method="POST" enctype="multipart/form-data">
-                     <input class=" col-md-3" type="file" name="myimage" />
+                <form  id="uploadForm" method="POST" enctype="multipart/form-data">
+                     <input class=" col-md-3" id="upload" type="file" name="myimage" />
                      <input class ="col-md-1"type="submit" name="submit" value="submit" />
                 </form>
+                <div class='uploadResult'></div>
                </div>
-            </div>
+            <!--/div> -->
         </div>
         <!-- /.row -->
-<hr/>
+        <hr/>
+
+         <!-- Online user Row -->
+        <div class="sidebar-nav">
+         
+         Online Users:：
+            <div class='row'>
+            <div class='col-md-10' id='userList'>
+            </div>
+            </div>
+        </div>
+        
 
 
         <!-- Projects Row -->
@@ -184,6 +198,7 @@
             </div>
         </div>
         <!-- /.row -->
+
 
         <hr>
 
@@ -219,19 +234,19 @@
 
         <hr>
 
-
         <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; All food pictures, all the time Website 2016
-                    </p>
-                </div>
-            </div>
-            <!-- /.row -->
+        <footer class="navbar navbar-inverse navbar-fixed-bottom">
+            <p>
+                <small>Copyright &copy; All food pictures, all the time Website 2016
+
+                </small> 
+            </p>
+            
+      </p>
         </footer>
 
     </div>
+
     <!-- /.container -->
 
     <!-- jQuery -->

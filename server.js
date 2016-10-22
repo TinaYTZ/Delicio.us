@@ -54,10 +54,30 @@ io.sockets.on('connection', function(socket){
 
 });
 
-app.post('/',upload.any(),function(req,res,next){
+app.post('/', upload.any(),function(req,res,next){
     console.log(req.files);
-    res.send(req.files);
+    res.json(req.files);
 });
+
+/*
+app.post( "/upload",function(req,res){
+
+    var upload = multer({ storage : storage}).any(req.file);
+
+    upload(req,res,function(err) {
+        if(err) {
+            console.log(err);
+            return res.end("Error uploading file.");
+        }
+        res.end("File has been uploaded");
+
+    });
+});
+
+
+
+
+
 
 
 
