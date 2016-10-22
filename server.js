@@ -13,9 +13,12 @@ var multer= require('multer'),
     });
 
 var upload=multer({storage:storage});
+var mongodb = require('mongodb');
+
 
 users=[];
 connections=[];
+
 
 server.listen(process.env.PORT || 3000);
 console.log('server running...');
@@ -23,6 +26,7 @@ app.use(express.static('./'));
 app.get('/', function(req,res){
     res.sendFile(__dirname+'/public/index.html'); 
 });
+
 
 io.sockets.on('connection', function(socket){
     connections.push(socket);
@@ -50,6 +54,27 @@ io.sockets.on('connection', function(socket){
         io.sockets.emit('get users',users);
     }
 
+
+
+
+
+});
+
+
+// Connect to the db
+ var MongoClient = mongodb.MongoClient;
+ MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+    if(!err) {
+        console.log("We are connected");
+    }
+    else{console.log(err);}
+    db.createCollection('images', {strict:true}, function(err, collection) {});    
+    var collection = db.collection('images');
+    var stream = collection.find({'id':1}).stream();
+    stream.on("data", function(item) {
+        console.log(item);
+        });
+    stream.on("end", function() {});
 
 
 });
