@@ -11,16 +11,34 @@ var main = function () {
   var $mainArea=$("#mainArea");
   var $uploadForm=$('#uploadForm');
   var $upload=$('#upload');
-  var $userList=$('#userList'); 
+  var $userList=$('#userList');
+  var $pictureArea=$('#pictureArea') 
+
   
   socket.on('get users', function(data){
     var html='';
     for (var i = 0; i < data.length; i++) {
    // html+='<li  class="bg-info" >'+ data[i] +'</li>';
-html+='<p class="btn-info btn-sm"> <span class="glyphicon glyphicon-user"></span>' + data[i]+ '</p>';
+   html+='<p class="btn-info btn-sm"> <span class="glyphicon glyphicon-user"></span>' + data[i]+ '</p>';
   }
   $userList.html(html);
-  }); 
+  });
+
+
+  socket.on('images', function(data){
+    console.log(data); 
+    console.log(data[0]['path']);
+    var html='';
+  
+    //console.log(array[]["path"]);
+
+      for (var i = 0; i < data.length; i++) {
+      html+='<img class="img-responsive col-md-4" src="'+data[i]['path']+'" alt="">';
+  }
+    $pictureArea.html(html);
+
+});
+
 
 
   $userForm.submit(function(e){
@@ -35,25 +53,50 @@ html+='<p class="btn-info btn-sm"> <span class="glyphicon glyphicon-user"></span
       $username.val('');
   });
 
+$uploadForm.submit(function(e) {
 
-}
-/*
-  $uploadForm.submit(function() {
-    e.preventDefault();
-    $(this).ajaxSubmit({
+   e.preventDefault(e);
 
-        error: function(xhr) {
-            console.log('Error: ' + xhr.status);
-        },
+   var data = new FormData(this);
+   var file = $("#upload")[0].files[0];
+   console.log(file);
+   
+   var filedata = {
+    file: {
+      name: file.name,
+      modified: file.lastModified,
+      modifiedHuman: file.lastModifiedDate,
+      size: file.size,
+      type: file.type 
+    }
+   };
 
+   var fileobj = JSON.stringify(filedata);
+   console.log(fileobj);
+   data.append("files", file);
+   data.append("title", "UploadImg");
+   console.log(data);
+
+    $.ajax({ 
+            type: "POST",
+            url: "/upload",
+            timeout:2000,
+            dataType: "json",
+            data: fileobj,
+            contentType: false,
         success: function(response) {
             console.log('Success: ' + response);
-        }
+        }//,
+        //error: function(xhr) {
+        //    console.log('Error: ' + xhr.status);
+        //}
     });
 
-    return false;
 });
-  */
+
+}
+
+
 
   /*
   $uploadForm.submit(file,function(e){

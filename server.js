@@ -18,6 +18,7 @@ var mongodb = require('mongodb');
 
 users=[];
 connections=[];
+images=[];
 
 
 server.listen(process.env.PORT || 3000);
@@ -26,6 +27,130 @@ app.use(express.static('./'));
 app.get('/', function(req,res){
     res.sendFile(__dirname+'/public/index.html'); 
 });
+
+//mongo DB
+// Connect to the db
+ // var MongoClient = mongodb.MongoClient;
+ // MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+ //    if(!err) {
+ //        console.log("We are connected");
+ //    }
+ //    else{console.log(err);}
+ //    //db.createCollection('images', {strict:true}, function(err, collection) {});        
+ //    var collection = db.collection('images');
+ //    var stream = collection.find({'id':1}).stream();
+ //    stream.on("data", function(item) {
+ //        console.log(item);
+ //        });
+ //    stream.on("end", function() {});
+
+ 
+  
+     var MongoClient = mongodb.MongoClient;
+     MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+    if(!err) {
+        console.log("We are connected");
+    }
+    else{console.log(err);}
+    //db.createCollection('images', {strict:true}, function(err, collection) {});        
+    var collection = db.collection('images');
+    var stream = collection.find({'id':1}).stream();
+    stream.on("data", function(item) {
+        console.log(item);
+        });
+    stream.on("end", function() {});
+//mongodb insert
+   //  collection.remove( );
+   //  //Create some images l
+   //  var img1 = {type: 'food', path:'/public/images/pizza1.jpg'};
+   //  var img2 = {type: 'food', path:'/public/images/DearFood.jpg'};
+   //  var img3 = {type: 'food', path:'/public/images/mexifod.jpg'};
+   //  var img4 = {type: 'food', path:'/public/images/88762487_junk_food.jpg'};
+   //  var img5 = {type: 'food', path:'/public/images/pexels-photo-119637-medium.jpeg'};
+   //  var img6 = {type: 'food', path:'/public/images/pexels-photo-132694-medium.jpeg'};
+   //  var img7 = {type: 'food', path:'/public/images/carrot-kale-walnuts-tomatoes-medium.jpg'};
+   //  var img8 = {type: 'food', path:'/public/images/pexels-photo-139374-medium.jpeg'};
+   //  var img9 = {type: 'food', path:'/public/images/cooking-ingredient-cuisine-kitchen-medium.jpg'};
+   //  var img10 = {type: 'food', path:'/public/images/pexels-photo-179912-medium.jpeg'};
+   //  var img11 = {type: 'food', path:'/public/images/food-chicken-meat-outdoors-medium.jpg'};
+   //  var img12 = {type: 'food', path:'/public/images/pexels-photo-24859-medium.jpg'};
+   //  var img13 = {type: 'food', path:'/public/images/food-dinner-lemon-rice-medium.jpg'};
+   //  var img14 = {type: 'food', path:'/public/images/pexels-photo-27599-medium.jpg'};
+   //  var img15 = {type: 'food', path:'/public/images/food-healthy-man-person-medium.jpeg'};
+   //  var img16 = {type: 'food', path:'/public/images/pexels-photo-41123-medium.jpeg'};
+
+   //  var img17 = {type: 'food', path:'/public/images/food-healthy-vegetables-potatoes-medium.jpg'};
+   //  var img18 = {type: 'food', path:'/public/images/pexels-photo-59100-medium.jpeg'};
+   //  var img19 = {type: 'food', path:'/public/images/food-kitchen-cutting-board-cooking-medium.jpg'};
+   //  var img20 = {type: 'food', path:'/public/images/pexels-photo-62097-medium.jpeg'};
+   //  var img21 = {type: 'food', path:'/public/images/food-pot-kitchen-cooking-medium.jpg'};
+   //  var img22 = {type: 'food', path:'/public/images/pexels-photo-63943-medium.jpeg'};
+   //  var img23 = {type: 'food', path:'/public/images/food-salad-healthy-lunch-medium.jpg'};
+   //  var img24 = {type: 'food', path:'/public/images/pexels-photo-70497-medium.jpeg'};
+   //  var img25 = {type: 'food', path:'/public/images/food-salad-healthy-vegetables-medium(1).jpg'};
+   //  var img26 = {type: 'food', path:'/public/images/pexels-photo-76093-medium.jpeg'};
+   //  var img27 = {type: 'food', path:'/public/images/food-salad-healthy-vegetables-medium.jpg'};
+   //  var img28 = {type: 'food', path:'/public/images/pexels-photo-medium.jpg'};
+   //  var img29 = {type: 'food', path:'/public/images/food-salad-restaurant-person-medium.jpg'};
+   //  var img30 = {type: 'food', path:'/public/images/healthfitness.jpg'};
+   //  var img31 = {type: 'food', path:'/public/images/salmon-dish-food-meal-46239-medium.jpeg'};
+   //  var img32 = {type: 'food', path:'/public/images/potatoes-french-mourning-funny-162971-medium.jpeg'};
+   //  var img33 = {type: 'food', path:'/public/images/muffin-medium.jpg '};
+   //  var img34 = {type: 'food', path:'/public/images/tacos.jpeg'};
+   //  var img35 = {type: 'food', path:'/public/images/vegetables-vegetable-basket-harvest-garden-medium.jpg'};
+   //  var img36 = {type: 'food', path:'/public/images/pexels-photo-104987-medium.jpeg '};
+
+
+   // // Insert some users
+   // collection.insert([img1, img2, img3,img4,img5,img6,img7,img8,img9,img10,
+   //                    img11, img12, img13,img14,img15,img16,img17,img18,img19,img20,
+   //                    img21, img22, img23,img24,img25,img26,img27,img28,img29,img30,
+   //                    img31, img32, img33,img34,img35,img36], function (err, result) {
+   //    if (err) {
+   //      console.log(err);
+   //    } else {
+   //      console.log('Inserted %d documents into the "images" collection. The documents inserted with "_id" are:', result.length, result);
+   //   }
+
+   //  }); 
+
+     collection.find({type: 'food'}).toArray(function (err, result) {
+      if (err) {
+        console.log(err);
+      } else if (result.length) {
+        console.log('Found:', result);
+        images= result;
+      } else {
+        console.log('No document(s) found with defined "find" criteria!');
+      }
+  });
+ 
+
+
+  
+      // //Close connection
+      // db.close();
+   });
+
+ 
+ // Insert some users
+  // var findfood=function(){
+  //    collection.find({type: 'food'}).toArray(function (err, result) {
+  //     if (err) {
+  //       console.log(err);
+  //     } else if (result.length) {
+  //       console.log('Found:', result);
+  //       return result;
+  //     } else {
+  //       console.log('No document(s) found with defined "find" criteria!');
+  //     }
+  // });
+  
+      // //Close connection
+      // db.close();
+   // };
+
+    
 
 
 io.sockets.on('connection', function(socket){
@@ -48,56 +173,53 @@ io.sockets.on('connection', function(socket){
         socket.username= data;
         users.push(socket.username);
         updateUsernames();
-    })
+        updateImage();
+
+    });
+
+
+   // io.sockets.emit('images',images);
 
     function updateUsernames(){
         io.sockets.emit('get users',users);
     }
 
-
-
-
-
+   function updateImage(){
+    socket.emit('images', images);
+}
+    
 });
 
 
-// Connect to the db
- var MongoClient = mongodb.MongoClient;
- MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
-    if(!err) {
-        console.log("We are connected");
-    }
-    else{console.log(err);}
-    db.createCollection('images', {strict:true}, function(err, collection) {});    
-    var collection = db.collection('images');
-    var stream = collection.find({'id':1}).stream();
-    stream.on("data", function(item) {
-        console.log(item);
-        });
-    stream.on("end", function() {});
 
-
-});
 
 app.post('/', upload.any(),function(req,res,next){
     console.log(req.files);
     res.json(req.files);
 });
 
-/*
-app.post( "/upload",function(req,res){
+// app.post('/upload', upload.single('file'),function(req,res,next){
+//     //console.log("data", req.);
+//     var data = req.body;
+//      //upload.any();
+//     console.log(data);//[0]['path']);
+//     //res.send(req.files);
+// });
 
-    var upload = multer({ storage : storage}).any(req.file);
 
-    upload(req,res,function(err) {
-        if(err) {
-            console.log(err);
-            return res.end("Error uploading file.");
-        }
-        res.end("File has been uploaded");
+// app.post( "/upload",function(req,res){
 
-    });
-});
+//     var upload = multer({ storage : storage}).any(req.file);
+
+//     upload(req,res,function(err) {
+//         if(err) {
+//             console.log(err);
+//             return res.end("Error uploading file.");
+//         }
+//         res.end("File has been uploaded");
+
+//     });
+// });
 
 
 
