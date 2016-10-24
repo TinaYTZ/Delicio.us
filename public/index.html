@@ -1,55 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Delicio.us   All about food</title>
-
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    <title>Delicio.us All about food</title>
     <!-- Bootstrap Core CSS -->
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="/public/css/4-col-portfolio.css" rel="stylesheet">
     <link href="/public/css/style.css" rel="stylesheet" type="text/css">
-    
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    <script src="http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script src="/socket.io/socket.io.js">
+    </script>
+    <script src=
+    "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js">
+    </script>
 </head>
-
 <body>
-
-        <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Delicio.us  </a>
+                <button class="navbar-toggle" data-target=
+                "#bs-example-navbar-collapse-1" data-toggle="collapse" type=
+                "button"><span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span></button> <a class="navbar-brand"
+                href="#">Delicio.us</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id=
+            "bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#">About</a>
@@ -61,69 +47,55 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-
-    </nav>
-    <!-- User Form Content -->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav><!-- User Form Content -->
     <div class="section no-pad-bot first" id="index-banner">
-        <div id="userFormArea" class="row text-center">
+        <div class="row text-center" id="userFormArea">
             <div class="col-lg-12">
-                <form  id ='userForm'>
+                <form id='userForm' name="userForm">
                     <div class="container">
-                        <br><br>
-                        <h1 class="header center"> Welcome to Delicio.us</h1>
+                        <br>
+                        <br>
+                        <h1 class="header center">Welcome to Delicio.us</h1>
                         <div class="row center">
-                            <h3 class="header col s12 light">Share. Eat. Repeat.</h3>
-                        </div>
-                        <input type="text" id='username' placeholder="username">
-                        <p></p>
-                        <input type="submit" class="submit button" value="login" />
-                     </div>   
+                            <h3 class="header col s12 light">Share. Eat.
+                            Repeat.</h3>
+                        </div><input id='username' placeholder="username" type=
+                        "text">
+                        <p></p><input class="submit button" type="submit"
+                        value="login">
+                    </div>
                     <div class="ui error message"></div>
                 </form>
             </div>
         </div>
-    </div>
-
-  <!-- Page Content -->
+    </div><!-- Page Content -->
     <div class="container" id='mainArea'>
         <!-- Page Heading -->
         <div class="row">
             <!--<div class="col-lg-12">-->
-                <h1 class= 'black'>Share us your picture!    
-                </h1>
-                <div class="row">
-                <form  id="uploadForm" method="POST" enctype="multipart/form-data">
-                     <input class=" col-md-3" id="upload" type="file" name="myimage" />
-                     <input class ="col-md-1"type="submit" name="submit" value="submit" />
+            <h1 class='black'>Share us your picture!</h1>
+            <div class="row">
+                <form enctype="multipart/form-data" id="uploadForm" method=
+                "post" name="uploadForm">
+                    <input class=" col-md-3" id="upload" name="myimage" type=
+                    "file"> <input class="col-md-1" name="submit" type="submit"
+                    value="submit">
                 </form>
                 <div class='uploadResult'></div>
-               </div>
-            <!--/div> -->
-        </div>
-        <!-- /.row -->
-        <hr/>
-
-         <!-- Online user Row -->
-        <div class="sidebar-nav">
-         Online Users:：
-            <div class='row'>
-            <div class='col-md-8' id='userList'>
-            </div>
-            </div>
-        </div>
-        
-
-
-        <!-- Projects Row -->
-        <div class="row" id="pictureArea">      
-        </div>
-
+            </div><!--/div> -->
+        </div><!-- /.row -->
         <hr>
-
+        <!-- Online user Row -->
+        <div class="sidebar-nav">
+            Online Users:：
+            <div class='row'>
+                <div class='col-md-8' id='userList'></div>
+            </div>
+        </div><!-- Projects Row -->
+        <div class="row" id="pictureArea"></div>
+        <hr>
         <!-- Pagination -->
         <div class="row text-center">
             <div class="col-lg-12">
@@ -151,34 +123,21 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <!-- /.row -->
-
+        </div><!-- /.row -->
         <hr>
-
-    </div>
-    <!-- Footer -->
+    </div><!-- Footer -->
     <footer class="navbar navbar-inverse navbar-fixed-bottom">
-        <p>
-            <small>Copyright &copy; All food pictures, all the time Website 2016
-
-            </small> 
-        </p>       
-    </footer>
-
-    <!-- /.container -->
-
+        <p><small>Copyright &copy; All food pictures, all the time Website
+        2016</small></p>
+    </footer><!-- /.container -->
     <!-- jQuery -->
-    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/public/javascripts/bootstrap.min.js"></script>
-
-    <!-- appjs -->
-    <script src="/public/javascripts/app.js"></script>
-
-
-
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js">
+    </script> <!-- Bootstrap Core JavaScript -->
+     
+    <script src="/public/javascripts/bootstrap.min.js">
+    </script> <!-- appjs -->
+     
+    <script src="/public/javascripts/app.js">
+    </script>
 </body>
-
 </html>
