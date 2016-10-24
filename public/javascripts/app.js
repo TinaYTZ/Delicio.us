@@ -12,7 +12,8 @@ var main = function () {
   var $uploadForm=$('#uploadForm');
   var $upload=$('#upload');
   var $userList=$('#userList');
-  var $pictureArea=$('#pictureArea') 
+  var $pictureArea=$('#pictureArea') ;
+  var $indexbanner=$('#index-banner');
 
   
   socket.on('get users', function(data){
@@ -32,12 +33,17 @@ var main = function () {
   
     //console.log(array[]["path"]);
 
-      for (var i = 0; i < data.length; i++) {
-      html+='<img class="img-responsive col-md-4" src="'+data[i]['path']+'" alt="">';
-  }
+    for (var i = 0; i < data.length; i++) {
+      html+='<img class="img-responsive col-md-4" id="kfood' + i + '" src="'+data[i]['path']+'" alt="">';
+    }
     $pictureArea.html(html);
 
-});
+  });
+
+  socket.on('new image', function(path){
+    console.log('new path:', path);
+    $('#kfood0').attr('src', '/' + path);
+  });
 
 
 
@@ -45,7 +51,7 @@ var main = function () {
       e.preventDefault();
       socket.emit('new user', $username.val(),function(data){
         if(data){
-          $userFormArea.hide();
+          $indexbanner.hide();
           $mainArea.show();
 
         }

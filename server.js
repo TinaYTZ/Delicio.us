@@ -16,6 +16,8 @@ var upload=multer({storage:storage});
 var mongodb = require('mongodb');
 
 
+
+
 users=[];
 connections=[];
 images=[];
@@ -132,17 +134,22 @@ io.sockets.on('connection', function(socket){
 
    function updateImage(){
     socket.emit('images', images);
+
+	app.post('/', upload.any(), function(req,res,next){
+		console.log(req.files);
+		var path = req.files[0].path;
+		console.log('path:', path);
+		io.emit('new image', path);
+	   // res.json(req.files);
+	});
+
+
 }
     
 });
 
 
 
-
-app.post('/', upload.any(),function(req,res,next){
-    console.log(req.files);
-   // res.json(req.files);
-});
 
 
 
