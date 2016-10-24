@@ -4,6 +4,54 @@ margin-top: 32px;
 }
 
 
+
+.first {
+    background-image: url(/public/images/bg.jpg);
+    background-size: 100%;
+    align:center ;
+    height: 100%;
+    color: #FFF;
+    padding: 5em;
+    padding-bottom: 25em;
+}
+.orange {
+    background-color: #ff9800 ;
+}
+.black{
+
+  color: black;
+
+}
+input{
+  color: black;
+}
+
+h1 {
+    color: #fff;
+   
+}
+.brand-logo {
+    position: absolute;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+    white-space: nowrap;
+}
+.btn-large {
+    height: 54px;
+    line-height: 54px;
+}
+
+
+
+.center, .center-align {
+    text-align: center;
+}
+
+.submit.button{
+  color: black;
+}
 .sidebar-nav {
     position: fixed;
     width: 150px;
