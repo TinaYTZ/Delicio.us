@@ -52,51 +52,55 @@ var main = function () {
       });
       $username.val('');
   });
-
-$uploadForm.submit(function(e) {
-
-   e.preventDefault(e);
-
-   var data = new FormData(this);
-   var file = $("#upload")[0].files[0];
-   console.log(file);
-   
-   var filedata = {
-    file: {
-      name: file.name,
-      modified: file.lastModified,
-      modifiedHuman: file.lastModifiedDate,
-      size: file.size,
-      type: file.type 
-    }
-   };
-
-   var fileobj = JSON.stringify(filedata);
-   console.log(fileobj);
-   data.append("files", file);
-   data.append("title", "UploadImg");
-   console.log(data);
-
-    $.ajax({ 
-            type: "POST",
-            url: "/upload",
-            timeout:2000,
-            dataType: "json",
-            data: fileobj,
-            contentType: false,
-        success: function(response) {
-            console.log('Success: ' + response);
-        }//,
-        //error: function(xhr) {
-        //    console.log('Error: ' + xhr.status);
-        //}
-    });
-
-});
-
 }
+$(document).ready(main);
 
 
+
+
+
+
+//try to use ajax handle uploading
+// $uploadForm.submit(function(e) {
+
+//    e.preventDefault(e);
+
+//    var data = new FormData(this);
+//    var file = $("#upload")[0].files[0];
+//    console.log(file);
+   
+//    var filedata = {
+//     file: {
+//       name: file.name,
+//       modified: file.lastModified,
+//       modifiedHuman: file.lastModifiedDate,
+//       size: file.size,
+//       type: file.type 
+//     }
+//    };
+
+//    var fileobj = JSON.stringify(filedata);
+//    console.log(fileobj);
+//    data.append("files", file);
+//    data.append("title", "UploadImg");
+//    console.log(data);
+
+//     $.ajax({ 
+//             type: "POST",
+//             url: "/upload",
+//             timeout:2000,
+//             dataType: "json",
+//             data: fileobj,
+//             contentType: false,
+//         success: function(response) {
+//             console.log('Success: ' + response);
+//         }//,
+//         //error: function(xhr) {
+//         //    console.log('Error: ' + xhr.status);
+//         //}
+//     });
+
+// });
 
   /*
   $uploadForm.submit(file,function(e){
@@ -130,17 +134,6 @@ $uploadForm.submit(function(e) {
 
 
 */
-
-
-
-
-
-
-
-
-
-
-$(document).ready(main);
 
 /*var main = function () {
     'use strict';
