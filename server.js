@@ -35,7 +35,7 @@ app.get('/', function(req,res){
         console.log("We are connected");
     }
     else{console.log(err);}
-    var collection = db.collection('images');
+    //var collection = db.collection('images');
     var stream = collection.find({'id':1}).stream();
     stream.on("data", function(item) {
         console.log(item);
