@@ -15,33 +15,31 @@ var multer= require('multer'),
 var upload=multer({storage:storage});
 var mongodb = require('mongodb');
 
-var users=[];
-var connections=[];
-var images=[];
+
+
+
+users=[];
+connections=[];
+images=[];
 
 
 server.listen(process.env.PORT || 3000);
 console.log('server running...');
 app.use(express.static('./'));
-
 app.get('/', function(req,res){
     res.sendFile(__dirname+'/public/index.html'); 
 });
 
-
+  
     var MongoClient = mongodb.MongoClient;
     MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
     if(!err) {
         console.log("We are connected");
     }
     else{console.log(err);}
-    //var collection = db.collection('images');
-    var stream = collection.find({'id':1}).stream();
-    stream.on("data", function(item) {
-        console.log(item);
-        });
-    stream.on("end", function() {});
-  
+   // db.createCollection('images', {strict:true}, function(err, collection) {});    
+
+    var collection = db.collection('images');
      collection.find({type: 'food'}).toArray(function (err, result) {
       if (err) {
         console.log(err);
@@ -51,11 +49,18 @@ app.get('/', function(req,res){
       } else {
         console.log('No document(s) found with defined "find" criteria!');
       }
-  });
 
+  });
+ 
+
+
+  
+    
    });
-  // socketio on  
-  io.sockets.on('connection', function(socket){
+
+ 
+ 
+io.sockets.on('connection', function(socket){
     connections.push(socket);
     console.log('connected: %s sockets connected', connections.length);
 
@@ -79,6 +84,9 @@ app.get('/', function(req,res){
 
     });
 
+
+   // io.sockets.emit('images',images);
+
     function updateUsernames(){
         io.sockets.emit('get users',users);
     }
@@ -86,25 +94,18 @@ app.get('/', function(req,res){
    function updateImage(){
     socket.emit('images', images);
 
-	app.post('/', upload.any(), function(req,res,next){
-		console.log(req.files);
-		var path = req.files[0].path;
-		console.log('path:', path);
-		io.emit('new image', path);
-	   // res.json(req.files);
-	});
+    app.post('/', upload.any(), function(req,res,next){
+        console.log(req.files);
+        var path = req.files[0].path;
+        console.log('path:', path);
+        io.emit('new image', path);
+       // res.json(req.files);
+    });
 
 
 }
     
 });
-
-
-
-
-
-
-
 
 
 
