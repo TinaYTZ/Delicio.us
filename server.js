@@ -31,6 +31,7 @@ var images=[];
 var cfood=[];
 var kfood=[];
 var jfood=[];
+var newUpload=[];
 
 MongoClient.connect('mongodb://localhost:27017/exampleDb', function(err, database){
             if(!err) {
@@ -144,6 +145,24 @@ app.get('/koreanPic',  function(req,res){
                 });
 });
 
+
+app.get('/newUpload',  function(req,res){
+    //res.sendFile(__dirname+'/public/index.html');
+    collection.find({'type':'newUpload'}).toArray(function (err, result) {
+                if (err) {
+                console.log(err);
+                } else if (result.length) {
+                console.log('Found:', result);
+                newUpload= result;
+                res.json(newUpload);
+                } else {
+                console.log('No document(s) found with defined "find" criteria!');
+                }
+                });
+
+});
+
+
  
 io.sockets.on('connection', function(socket){
     connections.push(socket);
@@ -159,6 +178,7 @@ io.sockets.on('connection', function(socket){
     app.post('/', upload.any(), function(req){
         console.log(req.files);
         var path = req.files[0].path;
+        collection.insert({type: 'newUpload', path:path});
         console.log('path:', path);
         io.emit('new image', path);
        // res.json(req.files);
