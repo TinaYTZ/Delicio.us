@@ -64,23 +64,11 @@ app.get('/', function(req,res){
     res.sendFile(__dirname+'/public/index.html'); 
 });
 
-  
-    var MongoClient = mongodb.MongoClient;
-    MongoClient.connect('mongodb://localhost:27017/exampleDb', function(err, db) {
-    if(!err) {
-        console.log('We are connected');
-    }
-    else{console.log(err);}
+
    // db.createCollection('images', {strict:true}, function(err, collection) {});    
 
-
- 
-
-
   
-    
-   });
-app.get('/allPic',  function(req,res){
+app.get('/allPic', function(req,res){
     //res.sendFile(__dirname+'/public/index.html');
 
      collection.find({}).toArray(function (err, result) {
@@ -174,7 +162,6 @@ io.sockets.on('connection', function(socket){
 
    function updateImage(){
     socket.emit('images', images);
-
     app.post('/', upload.any(), function(req){
         console.log(req.files);
         var path = req.files[0].path;
