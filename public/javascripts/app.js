@@ -68,6 +68,17 @@ $('#JapanesePic').click(function(e) {
 });
 
 
+$('#newUpload').click(function(e) {
+        e.preventDefault();        
+        $.getJSON('/newUpload',function (Response) {
+        var html='';
+    for (var i = 0; i < Response.length; i++) {
+      html+='<img class="img-responsive col-md-4" id="kfood" src="'+Response[i].path+'"alt="" >';
+    }
+    $pictureArea.html(html);
+  }); 
+});
+
 
 
 
