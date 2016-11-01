@@ -21,7 +21,6 @@ var upload=multer({storage:storage});
 var mongodb = require('mongodb');
 
 var MongoClient = mongodb.MongoClient;
-var id;
 
 var db, collection;
 
